@@ -52,7 +52,7 @@ const geoNamesId = process.env.GEONAMES_KEY
 console.log(`Your API keys are ${pixaBayId}, ${weatherBitId}, ${geoNamesId}`);
 console.log("dirname : "+__dirname)
 
-const getGeoNamesURL=require('server_utils')
+const  {getGeoNamesURL,getPixaBayURL}=require('./server_utils')
 
 app.get('/', function (req, res) {
     res.sendFile('dist/index.html')
@@ -63,41 +63,26 @@ app.listen(port, function () {
     console.log('Example app listening on port '+port+'!')
 })
 
-app.get('/test', function (req, res) {
-    const defaultRequest = mockAPIResponse
-    res.json(defaultRequest)
-})
 
 
-app.post('/analyse', async function (req, res) {
+app.post('/addNewTrip', async function (req, res) {
     
-    // Production mode: The user API key is retrieved from the .env file
-    // Then we call the meaningcloud API with the API key and text input by the user
-    // Finally we send the  process restult to the client side
+    // Production mode: The user API keys are retrieved from the .env file
     
-    const url = getURL(req.body.formText)
+    const toReturn =req.body
     try{
-        let response = await fetch(url)
-        let data = await response.json()
-        const toReturn ={}
-        toReturn.subjectivity   = data.subjectivity    
-        toReturn.irony          = data.irony    
-        toReturn.agreement      = data.agreement    
-        toReturn.confidence     = data.confidence 
-        console.log("SERVER: returned result = "+toReturn.subjectivity)
+        let response1 = await fetch(getGeoNamesURL(toReturn.city,geoNamesId))
+        let data = await response1.json()
+        
+        toReturn.long   = data.lng    
+        toReturn.lat    = data.lat
+        toReturn.delta  = 0 //TODO
+        toReturn.weather = "unknown weather"
+        let response2 = await fetch(getPixaBayURL(toReturn.city,pixaBayId))
+        let data2 = await response2.json()
+        toReturn.img  = data2.hits[0].webformatURL//data2.hits.size()>0?data2.hits[0].webformatURL:"";    
         res.send(toReturn)
     }catch(error){   
-        console.log("Could not fetch url "+url);
+        console.log("Error while adding new trip "+error);
     }
 })
-
-
-/*
-function getGeoNamesURL(longitude,latitude,apiKey){
-    const url ="http://api.geonames.org/citiesJSON?north="+latitude+"&south="+latitude+"&east="+longitude+"&west="+longitude+"&lang=en&username="+apiKey
-    console.log("SERVER: returned result = "+url)
-    return  url
-}
-
-module.exports = {getGeoNamesURL}
-*/

@@ -23,10 +23,10 @@ describe('Test the url formats' , ()=>
         }),
 
         test('Test geoNames URL',()=>{
-        let url = getGeoNamesURL(44.1,-9.9,-22.4,55.2,geoNamesId);
+        let url = getGeoNamesURL("Nancy",geoNamesId);
         expect(url).toBeDefined();
         new URL(url)
-        expect(url).toBe('http://api.geonames.org/citiesJSON?north=44.1&south=-9.9&east=-22.4&west=55.2&lang=en&username='+geoNamesId);
+        expect(url).toBe('http://api.geonames.org/searchJSON?q=Nancy&maxRows=1&username='+geoNamesId);
         }),
 
     test('Test pixaBay URL',()=>{

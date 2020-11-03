@@ -12,12 +12,14 @@ const geoNamesId = process.env.GEONAMES_KEY
 
 describe('Test the API responses' , ()=>
     {
-    test('Test geoNames fetch Mexico coordinates',()=>{
-        const url = getGeoNamesURL(44.1,-9.9,-22.4,55.2,geoNamesId);
+    test('Test geoNames fetch Nancy coordinates',()=>{
+        const url = getGeoNamesURL('Nancy',geoNamesId);
         return fetch(url).then(res=>res.json())
         .then(data=>{
-            const cityName = data.geonames[0].name;
-            expect(cityName).toBe('Mexico City');
+            const lat = data.geonames[0].lat;
+            const long = data.geonames[0].lng;
+            expect(lat).toBe("48.68439");
+            expect(long).toBe("6.18496");
             })
         }),
 

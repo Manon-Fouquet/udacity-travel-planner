@@ -3,6 +3,7 @@ import './styles/new-trip.scss'
 import './styles/old-trip.scss'
 
 import {clearAllTrips,addNewTrip} from './js/travelCreator'
+import { handleSubmit,retrieveData } from './js/formHandler'
 
 clearAllTrips()
 /*
@@ -13,3 +14,5 @@ for(let i=0;i<=2;i++){
     addNewTrip(i,null);
 }
 */
+
+export{handleSubmit}

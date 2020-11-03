@@ -7,14 +7,20 @@ const { merge } = require('webpack-merge');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 // Production plugins
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-// const TerserPlugin = require('terser-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 
 const commonConfig = {
     entry: './src/client/index.js',
     devtool: 'source-map',
+    output: {
+        path: path.join(__dirname, 'dist'),
+        filename: 'bundle.min.js',
+        libraryTarget: 'var',
+        library: 'Client'
+    },
     module: {
         rules: [
             {
@@ -40,31 +46,26 @@ const commonConfig = {
     ]
 };
  
- const productionConfig = {}
-// const productionConfig = {
-    // mode: 'production',
-    // optimization: {
-        // minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})],
-    // },
-    // module: {
-        // rules: [
-            // {
-                // test: /\.scss$/,
-                // use: [ MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader' ]
-            // }
-        // ]
-    // },
-    // plugins: [
-        // new MiniCssExtractPlugin({filename: '[name].css'})
-    // ]
-// };
+const productionConfig = {
+    mode: 'production',
+    optimization: {
+        minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})],
+    },
+    module: {
+        rules: [
+            {
+                test: /\.scss$/,
+                use: [ MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader' ]
+            }
+        ]
+    },
+    plugins: [
+        new MiniCssExtractPlugin({filename: '[name].css'})
+    ]
+ };
  
 const developmentConfig = {
     mode: 'development',
-    output: {
-        libraryTarget: 'var',
-        library: 'Client'
-    },
     module: {
         rules: [
             {
