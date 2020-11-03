@@ -6,7 +6,7 @@
         "dev": "webpack-dev-server  --env development --open",
         "build": "webpack --env production",
         "start": "node src/server/index.js",
-        "test": "echo \"jest not implemented yet\" && exit 1"
+        "test": "jest"
     },
     "devDependencies": {
         "@babel/core": "^7.5.4",
@@ -15,9 +15,11 @@
         "babel-loader": "^8.0.6",
         "clean-webpack-plugin": "^3.0.0",
         "css-loader": "^3.0.0",
+        "dotenv": "^8.2.0",
         "file-loader": "^6.2.0",
         "html-webpack-plugin": "^3.2.0",
         "mini-css-extract-plugin": "^0.8.0",
+        "node-fetch": "^2.6.1",
         "node-sass": "^4.12.0",
         "path": "^0.12.7",
         "sass-loader": "^7.1.0",
