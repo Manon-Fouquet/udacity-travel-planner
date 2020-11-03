@@ -4,9 +4,6 @@
         <meta charset="utf-8" /> 
         <title>Udacity travel planner</title> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" /> 
-        <link href="../styles/main.css" rel="stylesheet">
-        <link href="../styles/old-trip.css" rel="stylesheet">
-        <link href="../styles/new-trip.css" rel="stylesheet">
     </head> 
     <body> 
       <div class="container">
@@ -15,17 +12,17 @@
                 <label for="new-trip">Enter your destination and travel date</label>
                 <textarea class='form-input' id="input-city" placeholder="City name"></textarea>
                 <textarea class='form-input' id="input-date" placeholder="01/01/2021"></textarea>
-                <button id="add-travel" type = "submit"> Add new travel</button>             
+                <button id="add-travel" type = "submit" onclick = "return Client.handleSubmit(event)"> Add new travel</button>             
           </div>
 
           <div class="planned-trips-container">
            
             <div class="trip-container" id="trip1">
                 <div class="trip-left">
-                  <div class="trip-image"></div>
+                  <div class="default-trip-image"></div>
                 </div>
                 <div class="trip-right">
-                  <div class="trip-title" id="trip-dest-1">Your travel to Nancy,France</div>
+                  <div class="trip-title" id="trip-dest-1">Your travel to: Nancy,France</div>
                   <div class="trip-title" id="trip-date-1">Departing: 20/08/2021</div>  
                   <div class="trip-info" id="trip-delta-1">In 188 days</div>
                   <div class="trip-info" id="trip-weather-1">Expected weather is rainy</div>
@@ -34,7 +31,7 @@
 
             <div class="trip-container" id="trip2">
               <div class="trip-left">
-                <div class="trip-image"></div>
+                <div class="default-trip-image"></div>
               </div>
               
               <div class="trip-right">

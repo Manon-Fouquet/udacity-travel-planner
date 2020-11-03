@@ -10,6 +10,12 @@
 }
 
 .trip-image{
+    background-repeat: no-repeat;
+    height: 150px;
+    width: 150px;
+}
+
+.default-trip-image{
     background-image:url('../media/default.jpg');
     background-repeat: no-repeat;
     height: 150px;
