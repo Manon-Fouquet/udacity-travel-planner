@@ -30,6 +30,7 @@ describe('Test the API responses' , ()=>
             new URL(getPictureURL(data));
             })
         }),
+
     test('Test pixabay fetch no picture',()=>{
             const url = getPixaBayURL("sksjfkjslfzeijfdsv",pixaBayId);
             return fetch(url).then(res=>res.json())
@@ -38,13 +39,11 @@ describe('Test the API responses' , ()=>
                 })
      }),
 
-
     test('Test weatherbit API for average historical weather',()=>{
             const url = getHistoricalWeatherBitURL("48.68439","6.18496",'02/08/2021',weatherBitId)
             return fetch(url).then(res=>res.json())
             .then(resJSON=>{
                 if(resJSON.error==undefined){
-                    return true
                     expect(resJSON.data[0].temp).toBe(3)
                 }else{
                   expect(resJSON.error).toBe("API key not valid, or not yet activated.")

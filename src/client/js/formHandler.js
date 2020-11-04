@@ -27,7 +27,7 @@ function  retrieveData(city,date){
       .then(res => res.json())
       .then(res=> 
       {
-        console.log('Received data '+JSON.stringify(res));
+        console.log('Received data for new trip: '+JSON.stringify(res));
         addNewTrip(1,res) ;
         return res;
       })  

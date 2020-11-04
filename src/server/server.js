@@ -82,8 +82,8 @@ app.post('/addNewTrip', async function (req, res) {
     
         let response2 = await fetch(getHistoricalWeatherBitURL(data.lat,data.lng,req.body.date,weatherBitId))
         let data2 = await response2.json()
-        toReturn.weather  = data2.data[0]//data2.hits.size()>0?data2.hits[0].webformatURL:"";    
-        
+        toReturn.weather  = data2.length>0?data2[0].temp:JSON.stringify(data2)    
+     
         // Retrieves a picture corresponding to the city
         let response3 =  await fetch(getPixaBayURL(toReturn.city,pixaBayId))
         let data3 = await response3.json()

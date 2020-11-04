@@ -26,16 +26,16 @@ let currentTrips = document.querySelectorAll('trip-container');
  * 
 */
 function getDefaultData(){
-    const defaultCity = "Nancy";
+    const defaultCity = "Wonderland";
     const defaultDate = "01/01/2021";   
-    const defaultWeather = "rainy";   
-    const defaultDelta = "188";
+    const defaultTemp = "20";   
+    const defaultDelta = "2";
     const defaultData = {}
     defaultData.city = defaultCity  
     defaultData.date = defaultDate  
     defaultData.delta = defaultDelta   
-    defaultData.weather = defaultWeather
-    defaultData.img = "default.jpg"
+    defaultData.weather = defaultTemp
+    defaultData.img = "/src/client/media/default.jpg"
     return defaultData
 
 }
@@ -58,9 +58,9 @@ function addNewTrip(tripNumber,data){
 
     const tripLeft = document.createElement('div');
     tripLeft.setAttribute('class','trip-left');
-    const tripImg = document.createElement('div');
-    tripImg.setAttribute('class','trip-img')//isDefault?"default-trip-image":"trip-image")
-    tripImg.setAttribute('src','https://pixabay.com/get/57e0d74b4e52b10ff3d8992cc6203e781739d9e04e507749712a79d5964ac4_640.jpg')
+    const tripImg = document.createElement('img');
+    tripImg.setAttribute('src',data.img==""?'../media/default.jpg':data.img)  
+    tripImg.setAttribute('alt',data.img)
     tripLeft.appendChild(tripImg)
 
     const tripRight = document.createElement('div');
@@ -87,7 +87,7 @@ function addNewTrip(tripNumber,data){
     const tripWeather  = document.createElement('div');
     tripWeather.setAttribute('class','trip-info');
     tripWeather.id = "trip-weather-"+tripNumber
-    tripWeather.innerHTML = "Expected weather is "+data.weather
+    tripWeather.innerHTML = "Expected temperature is "+data.weather+ " °C"
 
     tripRight.appendChild(tripDest)
     tripRight.appendChild(tripDate)
