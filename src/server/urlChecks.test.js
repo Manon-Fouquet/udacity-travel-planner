@@ -1,4 +1,4 @@
-import {getGeoNamesURL, getPixaBayURL} from './server_utils.js'
+import {getGeoNamesURL,getGeoNamesCoordinates,getHistoricalWeatherBitURL,getWeatherbitDays, getPixaBayURL} from './server_utils.js'
 
 // Load environment variables, especially API keys
 const dotenv = require('dotenv');
@@ -34,6 +34,14 @@ describe('Test the url formats' , ()=>
         expect(url).toBeDefined();
         new URL(url)
         expect(url).toBe('https://pixabay.com/api/?key='+pixaBayId+'&q=Paris&image_type=photo&category=places&min_width=100px&min_height=100px&pretty=true');
+        }),
+
+    test('Test weatherbit historical URL',()=>{
+        let url = getHistoricalWeatherBitURL("48.68439","6.18496",'02/08/2021',weatherBitId)
+        expect(url).toBeDefined();
+        new URL(url)
+        console.log(url)
+        expect(url).toBe('https://api.weatherbit.io/v2.0/normals?&key='+weatherBitId+'&lat=48.68439&lon=6.18496&start_day=02-08&end_day=02-09&tp=daily');
         })
 
     });

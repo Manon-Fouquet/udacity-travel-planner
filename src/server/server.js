@@ -52,7 +52,7 @@ const geoNamesId = process.env.GEONAMES_KEY
 console.log(`Your API keys are ${pixaBayId}, ${weatherBitId}, ${geoNamesId}`);
 console.log("dirname : "+__dirname)
 
-const  {getGeoNamesURL,getPixaBayURL}=require('./server_utils')
+const  {getGeoNamesURL,getPixaBayURL,getHistoricalWeatherBitURL,getPictureURL}=require('./server_utils')
 
 app.get('/', function (req, res) {
     res.sendFile('dist/index.html')
@@ -71,16 +71,24 @@ app.post('/addNewTrip', async function (req, res) {
     
     const toReturn =req.body
     try{
+
+        // Retrieves coordinates from a city name
         let response1 = await fetch(getGeoNamesURL(toReturn.city,geoNamesId))
-        let data = await response1.json()
-        
+        let data = await response1.json()       
         toReturn.long   = data.lng    
         toReturn.lat    = data.lat
+
         toReturn.delta  = 0 //TODO
-        toReturn.weather = "unknown weather"
-        let response2 = await fetch(getPixaBayURL(toReturn.city,pixaBayId))
+    
+        let response2 = await fetch(getHistoricalWeatherBitURL(data.lat,data.lng,req.body.date,weatherBitId))
         let data2 = await response2.json()
-        toReturn.img  = data2.hits[0].webformatURL//data2.hits.size()>0?data2.hits[0].webformatURL:"";    
+        toReturn.weather  = data2.data[0]//data2.hits.size()>0?data2.hits[0].webformatURL:"";    
+        
+        // Retrieves a picture corresponding to the city
+        let response3 =  await fetch(getPixaBayURL(toReturn.city,pixaBayId))
+        let data3 = await response3.json()
+        toReturn.img  = getPictureURL(data3);    
+        
         res.send(toReturn)
     }catch(error){   
         console.log("Error while adding new trip "+error);

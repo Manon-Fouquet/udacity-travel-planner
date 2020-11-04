@@ -9,7 +9,7 @@
  * 
 */
 
-import {defaultPic} from "../media/default.jpg"
+//import {defaultPic} from "../media/default.jpg"
 
 const defaultCity = "Nancy";
 const defaultDate = "01/01/2021";
@@ -35,7 +35,7 @@ function getDefaultData(){
     defaultData.date = defaultDate  
     defaultData.delta = defaultDelta   
     defaultData.weather = defaultWeather
-    defaultData.img = defaultPic
+    defaultData.img = "default.jpg"
     return defaultData
 
 }
@@ -59,13 +59,13 @@ function addNewTrip(tripNumber,data){
     const tripLeft = document.createElement('div');
     tripLeft.setAttribute('class','trip-left');
     const tripImg = document.createElement('div');
-    tripImg.setAttribute('class',isDefault?"default-trip-image":"trip-image")
+    tripImg.setAttribute('class','trip-img')//isDefault?"default-trip-image":"trip-image")
+    tripImg.setAttribute('src','https://pixabay.com/get/57e0d74b4e52b10ff3d8992cc6203e781739d9e04e507749712a79d5964ac4_640.jpg')
     tripLeft.appendChild(tripImg)
 
     const tripRight = document.createElement('div');
     tripRight.setAttribute('class','trip-right');
     
-    //tripImg.setAttribute('background-image',"url('../media/default.jpg')");
     currentTrip.appendChild(tripLeft);
     currentTrip.appendChild(tripRight);
 

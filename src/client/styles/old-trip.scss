@@ -1,27 +1,19 @@
 .trip-container{
- width: 80vw;
- height: fit-content;
- display: flex;
- flex-direction: row;
- height: auto;
- border: solid 4px black;
- border-radius: 3px;
- margin-bottom: 2vw;
+    width: 80vw;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    border: solid 4px black;
+    border-radius: 3px;
+    margin-bottom: 2vw;
 }
 
-.trip-image{
-    background-repeat: no-repeat;
+img{
     height: 150px;
     width: 150px;
+    margin:1px;
 }
-
-.default-trip-image{
-    background-image:url('../media/default.jpg');
-    background-repeat: no-repeat;
-    height: 150px;
-    width: 150px;
-}
-
 
 .trip-right{
     padding-left: 10px; 

@@ -11,7 +11,7 @@
           <div class="input-travel">
                 <label for="new-trip">Enter your destination and travel date</label>
                 <textarea class='form-input' id="input-city" placeholder="City name"></textarea>
-                <textarea class='form-input' id="input-date" placeholder="01/01/2021"></textarea>
+                <textarea class='form-input' id="input-date" placeholder="mm/dd/yyyy"></textarea>
                 <button id="add-travel" type = "submit" onclick = "return Client.handleSubmit(event)"> Add new travel</button>             
           </div>
 
@@ -19,24 +19,24 @@
            
             <div class="trip-container" id="trip1">
                 <div class="trip-left">
-                  <div class="default-trip-image"></div>
+                  <img src="src/client/media/default.jpg"></img>
                 </div>
                 <div class="trip-right">
-                  <div class="trip-title" id="trip-dest-1">Your travel to: Nancy,France</div>
-                  <div class="trip-title" id="trip-date-1">Departing: 20/08/2021</div>  
-                  <div class="trip-info" id="trip-delta-1">In 188 days</div>
+                  <div class="trip-title" id="trip-dest-1">Your travel to: Wonderland</div>
+                  <div class="trip-title" id="trip-date-1">Departing: 01/01/2021</div>  
+                  <div class="trip-info" id="trip-delta-1">In 50 days</div>
                   <div class="trip-info" id="trip-weather-1">Expected weather is rainy</div>
                 </div>
             </div>
 
             <div class="trip-container" id="trip2">
               <div class="trip-left">
-                <div class="default-trip-image"></div>
+                <img src='https://pixabay.com/get/57e0d74b4e52b10ff3d8992cc6203e781739d9e04e507749712a79d5964ac4_640.jpg'></img>
               </div>
               
               <div class="trip-right">
                 
-                <div class="trip-title" id="trip-dest-2">Your travel to Nancy,France</div>
+                <div class="trip-title" id="trip-dest-2">Your travel to Paris</div>
                 <div class="trip-title" id="trip-date-2">Departing: 20/08/2021</div>  
                 <div class="trip-info" id="trip-delta-2">In 188 days</div>
                 <div class="trip-info" id="trip-weather-2">Expected weather is rainy</div>

@@ -13,3 +13,5 @@ The project includes a simple form where you enter the location you are travelin
     * Pixabay : https://pixabay.com/api/docs/
     
     * Weatherbit : https://www.weatherbit.io/api
+       - Climate Normals API : https://www.weatherbit.io/api/climate-normals
+       - 
