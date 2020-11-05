@@ -11,6 +11,8 @@ import { checkValidDate,getTimeStamp,getDefaultData} from './client_utils'
  * Define Global Variables
  * 
 */
+captureEvents
+const today = new Date()
 
 //import {defaultPic} from "../media/default.jpg"
 
@@ -63,12 +65,16 @@ function addNewTrip(data){
     const tripDate  = document.createElement('div');
     tripDate.setAttribute('class','trip-title');
     tripDate.id = "trip-date-"+tripNumber
+    // date has been validated previously
     tripDate.innerHTML = "Departing: "+data.date
-
+    
+    //https://www.geeksforgeeks.org/how-to-calculate-the-number-of-days-between-two-dates-in-javascript/
+    const deltaDays = (new Date(data.date).getTime() -today.getTime())/ (1000 * 3600 * 24)
+    
     const tripDelta  = document.createElement('div');
     tripDelta.setAttribute('class','trip-info');
     tripDelta.id = "trip-delta-"+tripNumber
-    tripDelta.innerHTML = "In "+data.delta+(data.delta>1?" days":" day")
+    tripDelta.innerHTML = deltaDays>0?("In "+Math.ceil(deltaDays)+" days"):+Math.ceil(deltaDays)==0?"Have a nice trip today!":("You left "+Math.floor(-deltaDays)+" days ago")
 
     const tripWeather  = document.createElement('div');
     tripWeather.setAttribute('class','trip-info');

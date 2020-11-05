@@ -75,11 +75,7 @@ app.post('/addNewTrip', async function (req, res) {
         // Retrieves coordinates from a city name
         let response1 = await fetch(getGeoNamesURL(toReturn.city,geoNamesId))
         let data = await response1.json()       
-        toReturn.long   = data.lng    
-        toReturn.lat    = data.lat
 
-        toReturn.delta  = 0 //TODO
-    
         let response2 = await fetch(getHistoricalWeatherBitURL(data.lat,data.lng,req.body.date,weatherBitId))
         let data2 = await response2.json()
         toReturn.weather  = data2.length>0?data2[0].temp:JSON.stringify(data2)    
