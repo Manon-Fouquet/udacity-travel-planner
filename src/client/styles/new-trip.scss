@@ -1,3 +1,6 @@
+$placeholder-color-default:'#a8a179';
+$placeholder-color-input: 'darkgrey';//'#f0d43a';
+
 .input-travel{
     display: flex;
     flex-direction: row;
@@ -11,8 +14,8 @@
 
 .form-input{
     background:#22b2da;
-    height: 50px;
-    color: #f0d43a;
+    height: 45px;
+    color:$placeholder-color-input;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
     box-shadow: 2px 4px 5px #444;
@@ -52,19 +55,19 @@ button:focus {
 }
 /* Style for Placeholder Text*/
 ::placeholder { /* Firefox, Chrome, Opera */ 
-    color: #201f19; 
+    color: $placeholder-color-default; 
     font-family: 'Oswald', sans-serif;
 
 } 
   
 :-ms-input-placeholder { /* Internet Explorer 10-11 */ 
-    color: #f0d43a; 
+    color:$placeholder-color-default; 
     font-family: 'Oswald', sans-serif;
 
 } 
   
 ::-ms-input-placeholder { /* Microsoft Edge */ 
-    color: #f0d43a; 
+    color: $placeholder-color-default; 
     font-family: 'Oswald', sans-serif;
 
 } 

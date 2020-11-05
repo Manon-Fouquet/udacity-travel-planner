@@ -43,7 +43,8 @@ function getDefaultData(){
  * Helper function to append a new section with default text
  */
 
-function addNewTrip(tripNumber,data){
+function addNewTrip(data){
+    const tripNumber = countAllTrips()+1
     let isDefault = false
     if(data==undefined || data==null){
         console.log("Using default data")
@@ -104,6 +105,11 @@ function clearAllTrips(){
     }
     return false;
 }
+
+
+function countAllTrips(){
+    return document.getElementsByClassName('trip-container').length
+}
 // Add class 'active' to section when near top of viewport
 
 /**
@@ -148,7 +154,7 @@ function makeSectionActive(){
 
 // Set sections as active
 
-document.addEventListener("scroll",makeSectionActive)
+//document.addEventListener("scroll",makeSectionActive)
 
 
-export{addNewTrip,clearAllTrips}
+export{addNewTrip,clearAllTrips,countAllTrips}
