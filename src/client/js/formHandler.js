@@ -1,6 +1,5 @@
 import {addNewTrip} from './travelCreator'
-//const dateRegex = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/
-const dateRegex = /^(0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])[\/\-](\d{4})$/
+import { checkValidDate,getTimeStamp,getDefaultData} from './client_utils'
 
 async function handleSubmit(event) {
     event.preventDefault()
@@ -31,12 +30,6 @@ function checkSubmittedData(city,date){
   }
  
   return true
-}
-
-function checkValidDate(dateString){
-    var m = dateString.match(dateRegex);
-    console.log(m)
-    return (m) ? new Date(m[3], m[1]-1, m[2]) : null;
 }
 
 function  retrieveData(city,date){

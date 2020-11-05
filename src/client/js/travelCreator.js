@@ -1,3 +1,6 @@
+import { checkValidDate,getTimeStamp,getDefaultData} from './client_utils'
+
+
 /**
  * 
  * Create and append a new travel
@@ -11,10 +14,6 @@
 
 //import {defaultPic} from "../media/default.jpg"
 
-const defaultCity = "Nancy";
-const defaultDate = "01/01/2021";
-const defaultData = {}
-
 
 let currentTrips = document.querySelectorAll('trip-container');
 
@@ -25,23 +24,8 @@ let currentTrips = document.querySelectorAll('trip-container');
  * Start Helper Functions
  * 
 */
-function getDefaultData(){
-    const defaultCity = "Wonderland";
-    const defaultDate = "01/01/2021";   
-    const defaultTemp = "20";   
-    const defaultDelta = "2";
-    const defaultData = {}
-    defaultData.city = defaultCity  
-    defaultData.date = defaultDate  
-    defaultData.delta = defaultDelta   
-    defaultData.weather = defaultTemp
-    defaultData.img = "/src/client/media/default.jpg"
-    return defaultData
 
-}
-/**
- * Helper function to append a new section with default text
- */
+
 
 function addNewTrip(data){
     const tripNumber = countAllTrips()+1
@@ -52,9 +36,10 @@ function addNewTrip(data){
         isDefault=true;
     }
     const tripContainer = document.getElementsByClassName("planned-trips-container")[0];
-
+ 
     let currentTrip = document.createElement('div');
     currentTrip.setAttribute('class','trip-container');
+    currentTrip.setAttribute('data_ts', getTimeStamp(data.date));
     currentTrip.id = 'trip'+tripNumber;
 
     const tripLeft = document.createElement('div');
@@ -98,6 +83,7 @@ function addNewTrip(data){
     tripContainer.append(currentTrip);   
 }
 
+// Removes all trips in the container
 function clearAllTrips(){
     const tripContainer = document.getElementsByClassName("planned-trips-container")[0];
     while (tripContainer.firstChild) {
@@ -106,7 +92,7 @@ function clearAllTrips(){
     return false;
 }
 
-
+// Count how many trips are displayed in container
 function countAllTrips(){
     return document.getElementsByClassName('trip-container').length
 }
