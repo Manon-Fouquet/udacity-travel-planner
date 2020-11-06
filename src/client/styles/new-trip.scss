@@ -1,23 +1,25 @@
 $form-width: 400px;
 $form-height: 30px;
 
-.input-travel{
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(186, 196, 196);
-    align-items: center;
+
+label{
+    display: inline;
+    font-size: 18px;
+    width: 200px;
 }
 
 %form-default{
-    width: 95vw;
+    width: 200px;
     height:$form-height;
-    font-size: 10px;
+    font-size: 18px;
     font-family: 'Oswald', sans-serif;   
     margin: 0; 
     padding: inherit;
     border: 1px solid saddlebrown;
     //box-shadow: 2px 4px 5px #444;
 }
+
+
 
 %form-default:hover{
     box-shadow: 4px 6px 8px rgb(4, 1, 51);
@@ -29,15 +31,18 @@ $form-height: 30px;
         height:$form-height;
         font-size: 20px;
         font-family: 'Oswald', sans-serif;    
-        
         margin: 2px;
         //box-shadow: 2px 4px 5px #444;
+    }
+
+    label{
+        width:$form-width;
     }
 }
 
 @media(min-width:800px){
     %form-default{
-        width: 400px;
+        width: 250px;
         height:50px;
         font-size: 20px;
         font-family: 'Oswald', sans-serif;    
@@ -47,16 +52,14 @@ $form-height: 30px;
     .input-travel{
         flex-direction: row;
         height:min-content;
+        //width:minmax(100vw,500px);
         align-items: left;
         justify-content: left;
     }
+
+    
 }
 
-label{
-    display: inline;
-    font-size: 20px;
-    width: minmax(200px,30vw);
-}
 
 
 

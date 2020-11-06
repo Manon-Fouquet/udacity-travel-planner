@@ -4,11 +4,11 @@ html,body {
     margin:0;
     padding:0;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background-color: #9fa7a8;
 }
 
 .container{
     width:fit-content; 
+    height: 100vh;
     margin:0;
     padding:0;
     display: grid;
@@ -19,8 +19,8 @@ html,body {
         "ft"
         ;
     grid-template-columns: 1fr;
-    grid-template-rows: minmax(150px,10vh) 1fr 1fr 50px ;
-    background:  linear-gradient(180deg, #FFFFFF 50%,#5d696b 90%,#9fa7a8);
+    grid-template-rows: minmax(10vh,150px) 1fr  minmax(80vh,150px) ;
+    
 }
 
 .header {
@@ -33,20 +33,29 @@ html,body {
 
 .input-travel{
     grid-area: new;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color:white;
+    margin-bottom:10px;
 }
 
 .planned-trips-container{
     min-height: min-content;
     width:100vw;
     grid-area: old;
+    display: flex;
+    flex-direction: column;
     padding: 0;
     margin: 0;
-    justify-self: center;
+    align-items: center;
+    background:  linear-gradient(180deg, #FFFFFF 20%,#9fa7a8 50%,#5d696b 100%);
 }
 
 .footer{
     grid-area: ft;
     text-align: center;
+    background:#5d696b;
 }
 
 

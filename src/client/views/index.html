@@ -17,32 +17,43 @@
 
           <div class="planned-trips-container">
            
-            <div class="trip-container" id="trip1">
-                <div class="trip-left">
-                  <img src="src/client/media/default.jpg"></img>
-                </div>
-                <div class="trip-right">
-                  <div class="trip-title" id="trip-dest-1">Your travel to: Wonderland</div>
-                  <div class="trip-title" id="trip-date-1">Departing: 01/01/2021</div>  
-                  <div class="trip-info" id="trip-delta-1">In 50 days</div>
-                  <div class="trip-info" id="trip-weather-1">Expected weather is rainy</div>
-                </div>
+            <div class="trip-container-box"  id="trip1">
+              <div class='close-bar'>
+                <div class='trash-button'  data_id='1' onclick="return Client.removeTrip(event)" alt="delete"></div>
+              </div>
+                
+              <div class="trip-container"> 
+                  <div class="trip-left">
+                    <img src="src/client/media/default.jpg"></img>
+                  </div>
+                  <div class="trip-right">
+                    <div class="trip-title" id="trip-dest-1">Your travel to: Wonderland</div>
+                    <div class="trip-title" id="trip-date-1">Departing: 01/01/2021</div>  
+                    <div class="trip-info" id="trip-delta-1">In 50 days</div>
+                    <div class="trip-info" id="trip-weather-1">Expected weather is rainy</div>
+                  </div>
+              </div>
             </div>
 
-            <div class="trip-container" id="trip2">
-              <div class="trip-left">
-                <img src='https://pixabay.com/get/57e0d74b4e52b10ff3d8992cc6203e781739d9e04e507749712a79d5964ac4_640.jpg'></img>
+            <div class="trip-container-box" id="trip2">
+              <div class='close-bar'>
+                <div class='trash-button'  data_id='2' onclick="return Client.removeTrip(event)" alt="delete"></div>
               </div>
-              
-              <div class="trip-right">
                 
-                <div class="trip-title" id="trip-dest-2">Your travel to Paris</div>
-                <div class="trip-title" id="trip-date-2">Departing: 20/08/2021</div>  
-                <div class="trip-info" id="trip-delta-2">In 188 days</div>
-                <div class="trip-info" id="trip-weather-2">Expected weather is rainy</div>
-              </div> 
+              <div class="trip-container" >
+                <div class="trip-left">
+                  <img src="src/client/media/default.jpg" alt="Paris"></img>
+                </div>
+                
+                <div class="trip-right">             
+                  <div class="trip-title" id="trip-dest-2">Your travel to Paris</div>
+                  <div class="trip-title" id="trip-date-2">Departing: 20/08/2021</div>  
+                  <div class="trip-info" id="trip-delta-2">In 188 days</div>
+                  <div class="trip-info" id="trip-weather-2">Expected weather is rainy</div>
+                </div> 
+              </div>
             </div>
-          </div>
+          </div>  
 
           </div>
             <div class="footer">

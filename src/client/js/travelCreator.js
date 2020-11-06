@@ -11,10 +11,6 @@ import { checkValidDate,getTimeStamp,getDefaultData} from './client_utils'
  * Define Global Variables
  * 
 */
-captureEvents
-//import {defaultPic} from "../media/default.jpg"
-
-
 let currentTrips = document.querySelectorAll('trip-container');
 
 //const navbar = document.getElementById("navbar__list");
@@ -35,12 +31,31 @@ function addNewTrip(data,deltaDays,maxDaysForForecast=7){
         data=getDefaultData();
         isDefault=true;
     }
+   
     const tripContainer = document.getElementsByClassName("planned-trips-container")[0];
  
+    let currentTripBox = document.createElement('div');
+    currentTripBox.setAttribute('class','trip-container-box');
+    currentTripBox.id = 'trip'+tripNumber;
+    tripContainer.append(currentTripBox);   
+    
+    let closeBar = document.createElement('div');
+    closeBar.setAttribute('class','close-bar');
+    currentTripBox.append(closeBar)
+
+    let trashButton = document.createElement('div');
+    trashButton.setAttribute('class','trash-button');
+    trashButton.setAttribute('data_id',tripNumber);
+    trashButton.setAttribute('onclick',"return Client.removeTrip(event)");
+    closeBar.append(trashButton);
+  
+
     let currentTrip = document.createElement('div');
     currentTrip.setAttribute('class','trip-container');
+    currentTripBox.append(currentTrip);
+
     currentTrip.setAttribute('data_ts', getTimeStamp(data.date));
-    currentTrip.id = 'trip'+tripNumber;
+    
 
     const tripLeft = document.createElement('div');
     tripLeft.setAttribute('class','trip-left');
@@ -87,7 +102,7 @@ function addNewTrip(data,deltaDays,maxDaysForForecast=7){
     tripRight.appendChild(tripDelta)
     tripRight.appendChild(tripWeather)
 
-    tripContainer.append(currentTrip);   
+    
 }
 
 // Removes all trips in the container
@@ -100,54 +115,19 @@ function clearAllTrips(){
 }
 
 // Count how many trips are displayed in container
+function getAllTrips(){
+    return document.getElementsByClassName('trip-container-box')
+}
 function countAllTrips(){
-    return document.getElementsByClassName('trip-container').length
+    return getAllTrips().length
 }
-// Add class 'active' to section when near top of viewport
 
-/**
- * We iterate over all sections, only the one in top of viewport is defined as the active
- * section, and we modify the navigation bar accordingly
- */
-function makeSectionActive(){
-    for(let sect of currentTrips){
-        // By default, no class attribute for the section
-        sect.setAttribute('class','')
-
-        // We search for the corresponding navigation item
-        const myListItem = navbar.querySelector('#button'+sect.id);
-        myListItem.setAttribute('class','')
-
-        // Detecting active section
-        const currentBox = sect.getBoundingClientRect();
-        const isActive = currentBox.top<=150 && currentBox.bottom>=150;
-
-        // Setting "active class" for the section and the item in the navigation menu
-        if(isActive){
-            sect.setAttribute('class','your-active-class');
-            const activeListItem = document.querySelector('navbar__menu');
-            myListItem.setAttribute('class','navbar__li__active')
-        }
-    }
+function removeTrip(event){
+    const tripId=event.target.getAttribute('data_id');
+    console.log("Removing trip "+tripId)
+    var element = document.getElementById("trip"+tripId)
+    element.parentNode.removeChild(element);
 }
 
 
-// Scroll to anchor ID using scrollTO event
-
-
-/**
- * End Main Functions
- * Begin Events
- * 
-*/
-
-// Build menu 
-
-// Scroll to section on link click => event added at navbar creation in createNavBar
-
-// Set sections as active
-
-//document.addEventListener("scroll",makeSectionActive)
-
-
-export{addNewTrip,clearAllTrips,countAllTrips}
+export{addNewTrip,clearAllTrips,countAllTrips,removeTrip}

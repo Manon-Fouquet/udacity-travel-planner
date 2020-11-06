@@ -2,9 +2,8 @@ import './styles/main.scss'
 import './styles/new-trip.scss'
 import './styles/old-trip.scss'
 
-import {clearAllTrips} from './js/travelCreator'
+import {clearAllTrips,removeTrip} from './js/travelCreator'
 import { handleSubmit} from './js/formHandler'
-import { checkValidDate} from './js/client_utils'
 
 clearAllTrips()
 
@@ -38,4 +37,5 @@ dateInput.addEventListener("blur", (event)=>{
     }
 }) 
 
-export{handleSubmit}
+
+export{handleSubmit,removeTrip}

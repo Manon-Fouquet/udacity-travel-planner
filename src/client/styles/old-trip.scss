@@ -1,12 +1,28 @@
-.trip-container{
-    width: 80vw;
+$trash-size: 20px;
+
+
+.trip-container-box{
+    width: minmax(400px,80vw);
     height: fit-content;
     display: flex;
-    flex-direction: row;
-    height: auto;
+    flex-direction: column;
     border: solid 4px black;
     border-radius: 3px;
     margin-bottom: 2vw;
+}
+
+
+@media(min-width:800px){
+    .trip-container-box{
+        width: 800px;
+    }
+}
+
+.trip-container{
+    width: inherit;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
 }
 
 img{
@@ -20,5 +36,18 @@ img{
 }
 
 .trip-title{
-    font-size: 26px; 
+    font-size: 18px; 
+}
+
+.close-bar{
+    display: flex;
+    height: fit-content;
+    justify-content: right;
+}
+.trash-button{
+    background-image: url('../media/trash.png');   
+    background-size: cover;
+    height: $trash-size;
+    width: $trash-size;
+    margin: 5px;
 }
