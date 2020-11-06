@@ -8,7 +8,7 @@ html,body {
 }
 
 .container{
-    width:100vw; 
+    width:fit-content; 
     margin:0;
     padding:0;
     display: grid;
@@ -19,7 +19,7 @@ html,body {
         "ft"
         ;
     grid-template-columns: 1fr;
-    grid-template-rows: minmax(150px,10vh) minmax(150px,10vh) 1fr 50px ;
+    grid-template-rows: minmax(150px,10vh) 1fr 1fr 50px ;
     background:  linear-gradient(180deg, #FFFFFF 50%,#5d696b 90%,#9fa7a8);
 }
 
@@ -37,6 +37,7 @@ html,body {
 
 .planned-trips-container{
     min-height: min-content;
+    width:100vw;
     grid-area: old;
     padding: 0;
     margin: 0;
@@ -47,6 +48,10 @@ html,body {
     grid-area: ft;
     text-align: center;
 }
+
+
+
+/*  Basic Styling To Override Default For Basic HTML Elements */
 
 a{
     color: black;
@@ -66,3 +71,5 @@ a:visited{
 a:hover{
     text-decoration: underline;
 }
+
+
