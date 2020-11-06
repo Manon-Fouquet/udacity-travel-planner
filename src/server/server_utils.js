@@ -39,6 +39,12 @@ function getHistoricalWeatherBitURL(lat,long,dateString,apiKey){
     const url ="https://api.weatherbit.io/v2.0/normals?&key="+apiKey+"&lat="+lat+"&lon="+long+"&start_day="+days.today+"&end_day="+days.tomorrow+"&tp=daily"
     return  url
 }
+//https://api.weatherbit.io/v2.0/forecast/daily?city=Raleigh,NC&key=API_KEY
+
+function getWeatherBitForecastURL(lat,long,apiKey){
+    const url ="https://api.weatherbit.io/v2.0/forecast/daily?&key="+apiKey+"&lat="+lat+"&lon="+long
+    return  url
+}
 
 // from https://stackoverflow.com/questions/563406/add-days-to-javascript-date
 function addDays(date, days) {
@@ -47,4 +53,4 @@ function addDays(date, days) {
     return result;
   }
 
-module.exports = {getGeoNamesURL,getGeoNamesCoordinates,getPixaBayURL,getHistoricalWeatherBitURL,getWeatherbitDays,getPictureURL}
+module.exports = {getGeoNamesURL,getGeoNamesCoordinates,getPixaBayURL,getHistoricalWeatherBitURL,getWeatherBitForecastURL,getWeatherbitDays,getPictureURL}

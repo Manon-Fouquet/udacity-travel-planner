@@ -1,4 +1,4 @@
-import {getGeoNamesURL,getGeoNamesCoordinates,getPixaBayURL,getHistoricalWeatherBitURL,getPictureURL} from './server_utils.js'
+import {getGeoNamesURL,getGeoNamesCoordinates,getPixaBayURL,getHistoricalWeatherBitURL,getWeatherBitForecastURL,getPictureURL} from './server_utils.js'
 
 // Load environment variables, especially API keys
 const dotenv = require('dotenv');
@@ -49,7 +49,16 @@ describe('Test the API responses' , ()=>
                   expect(resJSON.error).toBe("API key not valid, or not yet activated.")
                 }
                 })
-        })   
+        }),
+
+    test('Test weatherbit API for weather forecast',()=>{
+        const url = getWeatherBitForecastURL("48.68439","6.18496",weatherBitId)
+        return fetch(url).then(res=>res.json())
+        .then(resJSON=>{
+            expect(resJSON.data[0].valid_date).not.toBe(undefined)
+            console.log("Weatherbit temp. forecast for: "+resJSON.data[0].valid_date+ " is ["+resJSON.data[0].low_temp+" °C , "+resJSON.data[0].high_temp+" °C]")
+            })
+        })      
     }
 
 

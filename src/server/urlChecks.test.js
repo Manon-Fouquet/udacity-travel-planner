@@ -1,4 +1,4 @@
-import {getGeoNamesURL,getGeoNamesCoordinates,getHistoricalWeatherBitURL,getWeatherbitDays, getPixaBayURL} from './server_utils.js'
+import {getGeoNamesURL,getHistoricalWeatherBitURL,getWeatherBitForecastURL, getPixaBayURL} from './server_utils.js'
 
 // Load environment variables, especially API keys
 const dotenv = require('dotenv');
@@ -42,6 +42,13 @@ describe('Test the url formats' , ()=>
         new URL(url)
         console.log(url)
         expect(url).toBe('https://api.weatherbit.io/v2.0/normals?&key='+weatherBitId+'&lat=48.68439&lon=6.18496&start_day=02-08&end_day=02-09&tp=daily');
-        })
+        }),
+
+    test('Test weatherbit forecast URL',()=>{
+        let url = getWeatherBitForecastURL("48.68439","6.18496",weatherBitId)
+        expect(url).toBeDefined();
+        new URL(url)
+        console.log(url)
+      })
 
     });

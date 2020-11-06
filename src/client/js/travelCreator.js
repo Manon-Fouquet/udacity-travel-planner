@@ -12,8 +12,6 @@ import { checkValidDate,getTimeStamp,getDefaultData} from './client_utils'
  * 
 */
 captureEvents
-const today = new Date()
-
 //import {defaultPic} from "../media/default.jpg"
 
 
@@ -29,7 +27,7 @@ let currentTrips = document.querySelectorAll('trip-container');
 
 
 
-function addNewTrip(data){
+function addNewTrip(data,deltaDays,maxDaysForForecast=7){
     const tripNumber = countAllTrips()+1
     let isDefault = false
     if(data==undefined || data==null){
@@ -68,18 +66,21 @@ function addNewTrip(data){
     // date has been validated previously
     tripDate.innerHTML = "Departing: "+data.date
     
-    //https://www.geeksforgeeks.org/how-to-calculate-the-number-of-days-between-two-dates-in-javascript/
-    const deltaDays = (new Date(data.date).getTime() -today.getTime())/ (1000 * 3600 * 24)
-    
+      
     const tripDelta  = document.createElement('div');
     tripDelta.setAttribute('class','trip-info');
     tripDelta.id = "trip-delta-"+tripNumber
-    tripDelta.innerHTML = deltaDays>0?("In "+Math.ceil(deltaDays)+" days"):+Math.ceil(deltaDays)==0?"Have a nice trip today!":("You left "+Math.floor(-deltaDays)+" days ago")
+    tripDelta.innerHTML = deltaDays>0?("In "+Math.ceil(deltaDays)+" day"+(deltaDays>1?"s":"")):Math.ceil(deltaDays)==0?"Have a nice trip today!":("You left "+Math.floor(-deltaDays)+" day"+(deltaDays>1?"s":"")+" ago")
 
     const tripWeather  = document.createElement('div');
     tripWeather.setAttribute('class','trip-info');
     tripWeather.id = "trip-weather-"+tripNumber
-    tripWeather.innerHTML = "Expected temperature is "+data.weather+ " °C"
+    if(deltaDays>=0 && deltaDays<Math.min(maxDaysForForecast,15)){
+        tripWeather.innerHTML = "The weather forecast is min: "+data.minTemp+ " °C, max: "+data.maxTemp+" °C"
+    }else{
+        
+        tripWeather.innerHTML = "Typical temperature for this date is min: "+data.minTemp+ " °C, max: "+data.maxTemp +" °C"
+    }
 
     tripRight.appendChild(tripDest)
     tripRight.appendChild(tripDate)

@@ -5,11 +5,12 @@ const defaultDate = "01/01/2021";
 const defaultData = {}
 
 
+// YYYY/MM/DD
 function checkValidDate(dateString){
   if(dateString){
     var m = dateString.match(dateRegex);
-    console.log(m)
-    return (m) ? new Date(m[3], m[1]-1, m[2]) : null;
+    console.log(dateString," --> "+m)
+    return (m) ? new Date(m[1], m[2]-1, m[3]) : null;
   }
 }
 
@@ -21,14 +22,15 @@ function getTimeStamp(dateString){
 // Stub function
 function getDefaultData(){
   const defaultCity = "Wonderland";
-  const defaultDate = "01/01/2021";   
+  const defaultDate = "2021-01-01";   
   const defaultTemp = "20";   
   const defaultDelta = "2";
   const defaultData = {}
   defaultData.city = defaultCity  
   defaultData.date = defaultDate  
   defaultData.delta = defaultDelta   
-  defaultData.weather = defaultTemp
+  defaultData.minTemp = defaultTemp
+  defaultData.maxTemp = defaultTemp
   defaultData.img = "/src/client/media/default.jpg"
   return defaultData
 }

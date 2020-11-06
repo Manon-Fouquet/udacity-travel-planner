@@ -19,9 +19,10 @@ test('Test addTravelContainer',()=>{
     }),
     */
     test('Test timestamp',()=>{
-        const dateString = '01/31/2021'
+        const dateString = '2021-01-31'
         //const dateIfOk = checkValidDate(dateString)
         const timeStamp = getTimeStamp(dateString)
+        console.log("time stamp = "+timeStamp)
         expect(timeStamp).toBe(1612047600000)
     })
 })

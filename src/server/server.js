@@ -52,7 +52,7 @@ const geoNamesId = process.env.GEONAMES_KEY
 console.log(`Your API keys are ${pixaBayId}, ${weatherBitId}, ${geoNamesId}`);
 console.log("dirname : "+__dirname)
 
-const  {getGeoNamesURL,getPixaBayURL,getHistoricalWeatherBitURL,getPictureURL}=require('./server_utils')
+const  {getGeoNamesURL,getPixaBayURL,getHistoricalWeatherBitURL,getPictureURL, getWeatherBitForecastURL}=require('./server_utils')
 
 app.get('/', function (req, res) {
     res.sendFile('dist/index.html')
@@ -79,7 +79,6 @@ app.post('/addNewTrip', async function (req, res) {
         let data = await fetch(getGeoNamesURL(toReturn.city,geoNamesId))
                         .then(res=>res.json())
                         .then(res=>{
-                            console.log("Res : "+res.geonames.length+" - "+JSON.stringify(res.geonames[0]))
                             return (res.geonames.length>0? res.geonames[0]:null)
                         })
 
@@ -89,11 +88,20 @@ app.post('/addNewTrip', async function (req, res) {
             
         }else{
             console.log("Cooordinates of "+toReturn.city+" : (lat = "+data.lat+" , long = "+data.lng+")")
-
-            let response2 = await fetch(getHistoricalWeatherBitURL(data.lat,data.lng,req.body.date,weatherBitId))
-            let data2 = await response2.json()
-            toReturn.weather  = data2.data.length>0?data2.data[0].temp:JSON.stringify(data2)    
-            console.log("Average temperature of "+toReturn.city+" for this date is: "+ toReturn.weather+".") 
+            if(toReturn.delta>=0 && toReturn.delta<7){
+                let response2 = await fetch(getWeatherBitForecastURL(data.lat,data.lng,weatherBitId))
+                let data2 = await response2.json()
+                console.log("In "+toReturn.delta+" days : "+JSON.stringify(data2.data[5]))
+                toReturn.minTemp = data2.data[toReturn.delta].low_temp            
+                toReturn.maxTemp = data2.data[toReturn.delta].high_temp
+            } else{
+                let response2 = await fetch(getHistoricalWeatherBitURL(data.lat,data.lng,req.body.date,weatherBitId))
+                let data2 = await response2.json()
+                toReturn.minTemp  = data2.data.length>0?data2.data[0].min_temp:JSON.stringify(data2)    
+                toReturn.maxTemp  =  data2.data.length>0?data2.data[0].max_temp:JSON.stringify(data2)    
+            }
+            console.log("Min/Max temperature of "+toReturn.city+" for this date are: "+ toReturn.minTemp+" °C - "+toReturn.maxTemp+" °C") 
+  
         }    
         
  
