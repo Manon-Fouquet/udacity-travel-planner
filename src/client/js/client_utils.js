@@ -1,5 +1,5 @@
-//const dateRegex = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/
-const dateRegex = /^(0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])[\/\-](\d{4})$/
+//const dateRegex = /^(0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])[\/\-](\d{4})$/ // For MM/DD/YYYY
+const dateRegex = /^(\d{4})[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/ // For MM/DD/YYYY
 const defaultCity = "Nancy";
 const defaultDate = "01/01/2021";
 const defaultData = {}
@@ -33,5 +33,8 @@ function getDefaultData(){
   return defaultData
 }
 
+function sortTrips(){
+  //TODO
+}
 
-export { checkValidDate,getTimeStamp,getDefaultData}
+export {checkValidDate,getTimeStamp,getDefaultData,sortTrips}

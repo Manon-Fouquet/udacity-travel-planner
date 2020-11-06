@@ -1,5 +1,5 @@
 import {addNewTrip} from './travelCreator'
-import { checkValidDate,getTimeStamp,getDefaultData} from './client_utils'
+import { checkValidDate,getTimeStamp,getDefaultData,sortTrips} from './client_utils'
 
 async function handleSubmit(event) {
     event.preventDefault()
@@ -12,7 +12,9 @@ async function handleSubmit(event) {
     console.log("::: Running handleSubmit with city "+city+ " and "+date+":::");
     if(checkSubmittedData(city,date)){
       const data = retrieveData(city,date) 
+      //TODO : sortTrips();
     } 
+    
 }
 
 // Returns true if no issue, else alert the user
@@ -33,7 +35,7 @@ function checkSubmittedData(city,date){
 }
 
 function  retrieveData(city,date){
-    fetch('http://localhost:8089/addNewTrip', 
+  fetch('http://localhost:8089/addNewTrip', 
     {
         credentials: 'same-origin',
         method: 'POST',

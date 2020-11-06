@@ -5,7 +5,8 @@
     "scripts": {
         "dev": "webpack-dev-server  --env development --open",
         "build": "webpack --env production",
-        "start": "node src/server/server.js",
+        "start": "node src/server/server.js",   
+        "build-and-start": "webpack --env production && node src/server/server.js",
         "test": "jest"
     },
     "devDependencies": {

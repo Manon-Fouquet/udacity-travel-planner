@@ -1,5 +1,7 @@
 $placeholder-color-default:'#a8a179';
 $placeholder-color-input: 'darkgrey';//'#f0d43a';
+$form-width: 200px;
+$form-height: 50px;
 
 .input-travel{
     display: flex;
@@ -11,26 +13,27 @@ $placeholder-color-input: 'darkgrey';//'#f0d43a';
     padding:1em;
 }
 
-
-.form-input{
-    background:#22b2da;
-    height: 45px;
-    color:$placeholder-color-input;
+%form-default{
+    width: $form-width;
     font-size: 20px;
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Oswald', sans-serif;    
     box-shadow: 2px 4px 5px #444;
 }
 
+.form-input{
+    @extend %form-default;
+    background:#22b2da;
+    height: 45px;
+    color:$placeholder-color-input;
+}
+
 button{
-    width: 200px;
-    height: 50px;
+    @extend %form-default;
+    height: $form-height;
     background: #3b4a6b;
     color: #f0d43a;
-    font-size: 20px;
-    font-family: 'Oswald', sans-serif;
     border: none;
     border-radius: 5px;
-    box-shadow: 2px 4px 5px #444;
 }
 
 
