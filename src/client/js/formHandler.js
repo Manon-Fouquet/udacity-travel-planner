@@ -1,6 +1,5 @@
 import {addNewTrip} from './travelCreator'
-import { checkValidDate,getTimeStamp,getDefaultData,sortTrips} from './client_utils'
-
+import { checkValidDate,countAllTrips} from './client_utils'
 
 const today = new Date()
 

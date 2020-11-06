@@ -1,5 +1,5 @@
 //import {addNewTrip,clearAllTrips,countAllTrips} from './travelCreator.js'
-import {getTimeStamp,checkValidDate} from './client_utils'
+import {getTimeStamp} from './client_utils'
 
 
 describe('Test the API responses' , ()=>

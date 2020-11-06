@@ -8,7 +8,6 @@ html,body {
 
 .container{
     width:fit-content; 
-    height: 100vh;
     margin:0;
     padding:0;
     display: grid;
@@ -19,8 +18,8 @@ html,body {
         "ft"
         ;
     grid-template-columns: 1fr;
-    grid-template-rows: minmax(10vh,150px) 1fr  minmax(80vh,150px) ;
-    
+    //grid-template-rows: minmax(10vh,150px) 1fr  1fr minmax(10vh,150px) ;
+    grid-template-rows: minmax(10vh,150px) 1fr  minmax(80vh,150px) 1fr;
 }
 
 .header {
@@ -46,6 +45,8 @@ html,body {
     grid-area: old;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    justify-items: flex-start;
     padding: 0;
     margin: 0;
     align-items: center;

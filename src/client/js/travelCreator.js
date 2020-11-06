@@ -1,6 +1,6 @@
-import { checkValidDate,getTimeStamp,getDefaultData} from './client_utils'
+import { countAllTrips,getTimeStamp,getDefaultData,sortTrips} from './client_utils'
 
-
+const timeStamps={}
 /**
  * 
  * Create and append a new travel
@@ -36,7 +36,10 @@ function addNewTrip(data,deltaDays,maxDaysForForecast=7){
  
     let currentTripBox = document.createElement('div');
     currentTripBox.setAttribute('class','trip-container-box');
-    currentTripBox.id = 'trip'+tripNumber;
+    currentTripBox.id = 'trip'+tripNumber; 
+    const timeStamp = getTimeStamp(data.date);
+    timeStamps[timeStamp+Math.random()]= tripNumber
+    currentTripBox.setAttribute('data_ts', getTimeStamp(data.date));
     tripContainer.append(currentTripBox);   
     
     let closeBar = document.createElement('div');
@@ -54,7 +57,6 @@ function addNewTrip(data,deltaDays,maxDaysForForecast=7){
     currentTrip.setAttribute('class','trip-container');
     currentTripBox.append(currentTrip);
 
-    currentTrip.setAttribute('data_ts', getTimeStamp(data.date));
     
 
     const tripLeft = document.createElement('div');
@@ -101,33 +103,11 @@ function addNewTrip(data,deltaDays,maxDaysForForecast=7){
     tripRight.appendChild(tripDate)
     tripRight.appendChild(tripDelta)
     tripRight.appendChild(tripWeather)
-
+    console.log('Timestamps : '+JSON.stringify(timeStamps))
+    sortTrips(timeStamps)
     
 }
 
-// Removes all trips in the container
-function clearAllTrips(){
-    const tripContainer = document.getElementsByClassName("planned-trips-container")[0];
-    while (tripContainer.firstChild) {
-        tripContainer.removeChild(tripContainer.lastChild);
-    }
-    return false;
-}
-
-// Count how many trips are displayed in container
-function getAllTrips(){
-    return document.getElementsByClassName('trip-container-box')
-}
-function countAllTrips(){
-    return getAllTrips().length
-}
-
-function removeTrip(event){
-    const tripId=event.target.getAttribute('data_id');
-    console.log("Removing trip "+tripId)
-    var element = document.getElementById("trip"+tripId)
-    element.parentNode.removeChild(element);
-}
 
 
-export{addNewTrip,clearAllTrips,countAllTrips,removeTrip}
+export{addNewTrip}

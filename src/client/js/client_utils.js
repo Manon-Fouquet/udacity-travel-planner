@@ -35,8 +35,47 @@ function getDefaultData(){
   return defaultData
 }
 
-function sortTrips(){
-  //TODO
+
+// Removes all trips in the container
+function clearAllTrips(){
+  const tripContainer = document.getElementsByClassName("planned-trips-container")[0];
+  while (tripContainer.firstChild) {
+      tripContainer.removeChild(tripContainer.lastChild);
+  }
+  return false;
 }
 
-export {checkValidDate,getTimeStamp,getDefaultData,sortTrips}
+// Count how many trips are displayed in container
+function getAllTrips(){
+  return document.getElementsByClassName('trip-container-box')
+}
+function countAllTrips(){
+  return getAllTrips().length
+}
+
+
+
+function sortTrips(timeStamps){
+  const timeStampArray = []
+  for(let t in timeStamps){
+    timeStampArray.push(t);
+  }
+  timeStampArray.sort((a,b)=>a-b)
+  let i=0
+  timeStampArray.forEach(ts=>{
+    console.log('Setting the order of trip'+timeStamps[ts]+' to '+i)
+    document.getElementById('trip'+timeStamps[ts]).style.order=i
+    i++;
+  }
+  )
+}
+
+
+function removeTrip(event){
+  const tripId=event.target.getAttribute('data_id');
+  console.log("Removing trip "+tripId)
+  var element = document.getElementById("trip"+tripId)
+  element.parentNode.removeChild(element);
+}
+
+export {checkValidDate,getTimeStamp,getDefaultData,removeTrip,sortTrips,getAllTrips,countAllTrips,clearAllTrips}
