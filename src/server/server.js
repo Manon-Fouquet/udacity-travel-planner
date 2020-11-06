@@ -1,6 +1,6 @@
 
 // Setup empty JS object to act as endpoint for all routes
-const projectData = {};
+const projectData =[];
 
 const port = 8089
 
@@ -91,7 +91,7 @@ app.post('/addNewTrip', async function (req, res) {
             if(toReturn.delta>=0 && toReturn.delta<7){
                 let response2 = await fetch(getWeatherBitForecastURL(data.lat,data.lng,weatherBitId))
                 let data2 = await response2.json()
-                console.log("In "+toReturn.delta+" days : "+JSON.stringify(data2.data[5]))
+                console.log("In "+toReturn.delta+" days : "+data2.data[toReturn.delta].low_temp +" °C / "+data2.data[toReturn.delta].high_temp+' °C' )
                 toReturn.minTemp = data2.data[toReturn.delta].low_temp            
                 toReturn.maxTemp = data2.data[toReturn.delta].high_temp
             } else{
@@ -109,7 +109,8 @@ app.post('/addNewTrip', async function (req, res) {
         let response3 =  await fetch(getPixaBayURL(toReturn.city,pixaBayId))
         let data3 = await response3.json()
         toReturn.img  = getPictureURL(data3);    
-        
+        projectData.push(toReturn)
+        console.log(JSON.stringify(projectData))
         res.send(toReturn)
     }catch(error){   
         console.log("Error while adding new trip "+error);

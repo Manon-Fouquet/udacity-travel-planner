@@ -5,7 +5,8 @@ $form-height: 30px;
 label{
     display: inline;
     font-size: 18px;
-    width: 200px;
+    width: 200px;   
+    margin-left: 10px;
 }
 
 %form-default{
@@ -36,7 +37,7 @@ label{
     }
 
     label{
-        width:$form-width;
+        width:200px;
     }
 }
 
@@ -52,12 +53,12 @@ label{
     .input-travel{
         flex-direction: row;
         height:min-content;
-        //width:minmax(100vw,500px);
+        width:800px;
         align-items: left;
         justify-content: left;
     }
 
-    
+
 }
 
 

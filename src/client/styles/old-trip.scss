@@ -14,7 +14,9 @@ $trash-size: 20px;
 
 @media(min-width:800px){
     .trip-container-box{
-        width: 800px;
+        width: 780px;
+        align-self: start;
+        margin: 10px;
     }
 }
 
