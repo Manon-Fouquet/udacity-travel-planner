@@ -47,9 +47,4 @@ function addDays(date, days) {
     return result;
   }
 
-function computeDeltaT(date){
-    let today = new Date();
-    let newDate = new Date("2014-07-08T09:02:21.377");
-}
-
 module.exports = {getGeoNamesURL,getGeoNamesCoordinates,getPixaBayURL,getHistoricalWeatherBitURL,getWeatherbitDays,getPictureURL}

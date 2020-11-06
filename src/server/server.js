@@ -73,13 +73,30 @@ app.post('/addNewTrip', async function (req, res) {
     try{
 
         // Retrieves coordinates from a city name
-        let response1 = await fetch(getGeoNamesURL(toReturn.city,geoNamesId))
-        let data = await response1.json()       
+        //let response1 = await fetch(getGeoNamesURL(toReturn.city,geoNamesId))
+        //let data = await response1.json()
 
-        let response2 = await fetch(getHistoricalWeatherBitURL(data.lat,data.lng,req.body.date,weatherBitId))
-        let data2 = await response2.json()
-        toReturn.weather  = data2.length>0?data2[0].temp:JSON.stringify(data2)    
-     
+        let data = await fetch(getGeoNamesURL(toReturn.city,geoNamesId))
+                        .then(res=>res.json())
+                        .then(res=>{
+                            console.log("Res : "+res.geonames.length+" - "+JSON.stringify(res.geonames[0]))
+                            return (res.geonames.length>0? res.geonames[0]:null)
+                        })
+
+        if(data.lat==undefined ||data.lng==undefined){
+            console.log("Cooordinates of "+toReturn.city+" not found. Fetching "+ getGeoNamesURL(toReturn.city,geoNamesId)+ " returned:")
+            console.log(JSON.stringify(data))
+            
+        }else{
+            console.log("Cooordinates of "+toReturn.city+" : (lat = "+data.lat+" , long = "+data.lng+")")
+
+            let response2 = await fetch(getHistoricalWeatherBitURL(data.lat,data.lng,req.body.date,weatherBitId))
+            let data2 = await response2.json()
+            toReturn.weather  = data2.data.length>0?data2.data[0].temp:JSON.stringify(data2)    
+            console.log("Average temperature of "+toReturn.city+" for this date is: "+ toReturn.weather+".") 
+        }    
+        
+ 
         // Retrieves a picture corresponding to the city
         let response3 =  await fetch(getPixaBayURL(toReturn.city,pixaBayId))
         let data3 = await response3.json()
