@@ -8,10 +8,10 @@ The project includes a simple form where you enter the location you are travelin
 
 # API used in the project
 
-    * Geonames : https://www.geonames.org/export/web-services.html
+    * Geonames: https://www.geonames.org/export/web-services.html
     
-    * Pixabay : https://pixabay.com/api/docs/
+    * Pixabay: https://pixabay.com/api/docs/
     
     * Weatherbit : https://www.weatherbit.io/api
-       - Climate Normals API : https://www.weatherbit.io/api/climate-normals
-       - 
+       - Climate Normals API: https://www.weatherbit.io/api/climate-normals
+       - Weather forecast API: https://api.weatherbit.io/v2.0/forecast/daily 
