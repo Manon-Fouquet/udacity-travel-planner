@@ -42,10 +42,13 @@ img{
 }
 
 .close-bar{
+    width:inherit;
     display: flex;
+    flex-direction: row;;
     height: fit-content;
     justify-content: right;
 }
+
 .trash-button{
     background-image: url('../media/trash.png');   
     background-size: cover;

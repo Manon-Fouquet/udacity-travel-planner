@@ -55,9 +55,14 @@ function  retrieveData(city,dateString){
       .then(res => res.json())
       .then(res=> 
       {
-        console.log('Received data for new trip: '+JSON.stringify(res));
-        addNewTrip(res,deltaDays) ;
-        return res;
+        if(res.error){
+          console.log('Could not add the travel: '+JSON.stringify(res.error));
+        }else{
+          console.log('Received data for new trip: '+JSON.stringify(res));
+          addNewTrip(res,deltaDays) ;
+          return res;
+        }
+        
       })  
 }
 

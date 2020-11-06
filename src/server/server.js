@@ -114,5 +114,6 @@ app.post('/addNewTrip', async function (req, res) {
         res.send(toReturn)
     }catch(error){   
         console.log("Error while adding new trip "+error);
+        res.send({'error':""+error})
     }
 })
