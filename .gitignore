@@ -1,3 +1,9 @@
+# Ignored folders
 dist
-.env
 node_modules
+
+# Ignored file type
+*.zip
+
+# Stores the API keys
+.env
