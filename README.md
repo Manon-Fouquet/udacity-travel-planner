@@ -28,8 +28,7 @@ The project includes a simple form where you enter the location you are travelin
             
     - the following scripts are available    
         * "dev": build the development environement and open the browser
-        * "test": run the test suite
-        * "start": run the server in production mode on port 8085
         * "build": build the production environement
-        * "build-and-start": combine both scipts above
-       
+        * "start": run the server in production mode on port 8089
+        * "build-and-start": combine both scipts above  
+        * "test": run the test suite
